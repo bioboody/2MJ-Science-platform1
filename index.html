@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080d1b">
+<title>2MJ | لشرح العلوم</title>
+
+<style>
+:root {
+  color-scheme: dark;
+  --bg: #080d1b;
+  --panel: #101a30;
+  --card: #121f38;
+  --text: #f4f7ff;
+  --muted: #9baac5;
+  --border: #263754;
+  --blue: #387cff;
+  --glow: #2563eb35;
+}
+body.light {
+  color-scheme: light;
+  --bg: #f1f5fc;
+  --panel: #ffffff;
+  --card: #f8faff;
+  --text: #14213d;
+  --muted: #61708b;
+  --border: #d8e2f2;
+  --blue: #245fe0;
+  --glow: #2563eb15;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Tahoma, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background .25s, color .25s;
+}
+button, input { font: inherit; }
+button { cursor: pointer; }
+button:focus-visible, input:focus-visible {
+  outline: 2px solid #6ea2ff;
+  outline-offset: 3px;
+}
+header {
+  height: 82px;
+  padding: 12px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+.brand { display: flex; align-items: center; gap: 12px; }
+.logo {
+  width: 53px;
+  height: 53px;
+  display: grid;
+  place-items: center;
+  border-radius: 15px;
+  color: white;
+  font-weight: 900;
+  font-size: 19px;
+  background: linear-gradient(140deg,#5294ff,#1643ca);
+  box-shadow: 0 0 28px #2563eb50;
+  direction: ltr;
+}
+.brand h2 { font-size: 19px; margin: 0 0 5px; }
+.brand small { color: var(--muted); }
+.header-actions { display: flex; align-items: center; gap: 9px; }
+.btn {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-weight: bold;
+  background: var(--panel);
+  color: var(--text);
+}
+.btn-primary {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: white;
+}
+.theme {
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  border-radius: 50%;
+  width: 43px;
+  height: 43px;
+  font-size: 20px;
+}
+main {
+  max-width: 1320px;
+  margin: auto;
+  padding: 55px 5% 70px;
+}
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  align-items: center;
+  gap: 55px;
+}
+.visual {
+  min-height: 430px;
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+.orbit {
+  position: absolute;
+  width: 330px;
+  height: 330px;
+  border: 1px solid #387cff36;
+  border-radius: 50%;
+  transform: rotate(-24deg) scaleY(.72);
+}
+.orbit.two {
+  width: 270px;
+  height: 390px;
+  transform: rotate(45deg) scaleY(.7);
+  border-color: #9b69ff36;
+}
+.periodic {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 132px);
+  gap: 13px;
+  direction: ltr;
+}
+.element {
+  aspect-ratio: 1 / 1.08;
+  padding: 10px;
+  border: 1px solid #4a79d5;
+  border-radius: 13px;
+  background: linear-gradient(145deg,#18294a,#0c1427);
+  box-shadow: 0 0 25px var(--glow);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+body.light .element {
+  background: linear-gradient(145deg,#fff,#e8efff);
+}
+.element::after {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: #4b82ff13;
+  border-radius: 50%;
+  top: -48px;
+  right: -45px;
+}
+.element.purple { border-color: #9866ed; }
+.element.green { border-color: #22b98b; }
+.element.red { border-color: #ef607e; }
+.atomic {
+  font-size: 12px;
+  color: var(--muted);
+}
+.symbol {
+  font-size: 48px;
+  line-height: 1;
+  font-weight: 900;
+  color: #6ba1ff;
+  text-align: center;
+}
+.purple .symbol { color: #bc9aff; }
+.green .symbol { color: #50ddb0; }
+.red .symbol { color: #ff8399; }
+.mass { font-size: 12px; color: var(--muted); text-align: center; }
+.element-name {
+  font-size: 12px;
+  text-align: center;
+  color: var(--text);
+}
+.content { min-width: 0; }
+.tag {
+  color: #75a5ff;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: .3px;
+}
+h1 {
+  font-size: clamp(43px,6vw,76px);
+  line-height: 1.2;
+  margin: 19px 0;
+}
+h1 span { color: #4d88ff; }
+.subtitle {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--muted);
+  line-height: 1.9;
+}
+.description {
+  color: var(--muted);
+  line-height: 1.9;
+  max-width: 510px;
+}
+.grade-list {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 10px;
+  margin: 30px 0;
+}
+.grade {
+  border: 0;
+  border-radius: 30px;
+  color: white;
+  padding: 15px 7px;
+  font-weight: bold;
+}
+.grade small { display: block; margin-top: 6px; font-size: 10px; }
+.red-grade { background: linear-gradient(120deg,#d81043,#ff315a); }
+.blue-grade { background: linear-gradient(120deg,#344ce8,#735dff); }
+.green-grade { background: linear-gradient(120deg,#039c68,#19d58a); }
+.community { display: flex; gap: 12px; flex-wrap: wrap; }
+.whatsapp {
+  border: 1px solid #20b97970;
+  border-radius: 12px;
+  background: #13855319;
+  color: #42d89c;
+  text-decoration: none;
+  padding: 15px 22px;
+  font-weight: bold;
+}
+.features {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 14px;
+  margin-top: 48px;
+}
+.feature {
+  text-align: center;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  border-radius: 14px;
+  padding: 21px 10px;
+}
+.feature strong { display: block; margin-bottom: 8px; }
+.feature p { margin: 0; font-size: 13px; color: var(--muted); }
+
+/* نافذة الحساب */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  background: #020611d9;
+  padding: 18px;
+  overflow-y: auto;
+  place-items: center;
+}
+.modal.open { display: grid; }
+.dialog {
+  width: min(460px,100%);
+  max-height: calc(100vh - 36px);
+  overflow-y: auto;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 27px;
+  position: relative;
+  box-shadow: 0 20px 90px #0005;
+}
+.dialog-head { padding-left: 20px; }
+.dialog h2 { margin: 0 0 10px; }
+.muted { color: var(--muted); font-size: 13px; line-height: 1.8; }
+.close {
+  position: absolute;
+  left: 15px;
+  top: 12px;
+  font-size: 27px;
+  color: var(--muted);
+  background: transparent;
+  border: 0;
+}
+.field { margin-top: 16px; }
+.field label {
+  display: block;
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+.field input {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  color: var(--text);
+  background: var(--bg);
+  direction: rtl;
+}
+.field input:focus { border-color: var(--blue); }
+.full { width: 100%; margin-top: 18px; }
+.switch {
+  display: block;
+  border: 0;
+  background: transparent;
+  color: #75a5ff;
+  margin: 17px auto 0;
+}
+.message {
+  white-space: pre-wrap;
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--muted);
+}
+footer {
+  text-align: center;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  padding: 24px;
+  font-size: 12px;
+}
+@media(max-width:800px) {
+  header { height: auto; padding: 13px 4%; flex-wrap: wrap; }
+  .brand h2 { font-size: 15px; }
+  .header-actions { gap: 5px; }
+  .btn { padding: 10px; font-size: 12px; }
+  main { padding: 35px 5%; }
+  .hero { grid-template-columns: 1fr; gap: 15px; }
+  .content { text-align: center; }
+  .visual { order: 2; min-height: 330px; }
+  .description { margin-inline: auto; }
+  h1 { font-size: 48px; }
+  .subtitle { font-size: 17px; }
+  .grade-list { gap: 6px; }
+  .grade { font-size: 12px; }
+  .community { justify-content: center; }
+  .features { gap: 7px; margin-top: 25px; }
+  .feature { padding: 16px 5px; }
+  .feature p { font-size: 11px; }
+}
+@media(max-width:390px) {
+  .logo { width: 43px; height: 43px; }
+  .brand h2 { font-size: 13px; }
+  .brand small { font-size: 10px; }
+  .header-actions .btn { padding: 9px 7px; }
+  .periodic { grid-template-columns: repeat(2,112px); }
+  .symbol { font-size: 40px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <div class="logo">2MJ</div>
+    <div>
+      <h2>2MJ لشرح العلوم</h2>
+      <small>العلم يبدأ بسؤال</small>
+    </div>
+  </div>
+  <div class="header-actions">
+    <button class="btn btn-primary" onclick="openAuth('signup')">
+      + حساب جديد
+    </button>
+    <button class="btn" onclick="openAuth('login')">
+      تسجيل الدخول
+    </button>
+    <button class="theme" id="themeBtn" onclick="toggleTheme()"
+      aria-label="تغيير المظهر">☀</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="visual" aria-label="عناصر كيميائية زخرفية">
+      <div class="orbit"></div>
+      <div class="orbit two"></div>
+      <div class="periodic">
+        <div class="element">
+          <span class="atomic">1</span>
+          <span class="symbol">H</span>
+          <span class="mass">1.008</span>
+          <span class="element-name">الهيدروجين</span>
+        </div>
+        <div class="element purple">
+          <span class="atomic">8</span>
+          <span class="symbol">O</span>
+          <span class="mass">15.999</span>
+          <span class="element-name">الأكسجين</span>
+        </div>
+        <div class="element green">
+          <span class="atomic">11</span>
+          <span class="symbol">Na</span>
+          <span class="mass">22.990</span>
+          <span class="element-name">الصوديوم</span>
+        </div>
+        <div class="element red">
+          <span class="atomic">26</span>
+          <span class="symbol">Fe</span>
+          <span class="mass">55.845</span>
+          <span class="element-name">الحديد</span>
+        </div>
+        <div class="element purple">
+          <span class="atomic">17</span>
+          <span class="symbol">Cl</span>
+          <span class="mass">35.45</span>
+          <span class="element-name">الكلور</span>
+        </div>
+        <div class="element green">
+          <span class="atomic">6</span>
+          <span class="symbol">C</span>
+          <span class="mass">12.011</span>
+          <span class="element-name">الكربون</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="tag">2MJ · SCIENCE ACADEMY</div>
+      <h1>2MJ لشرح <span>العلوم</span></h1>
+      <p class="subtitle">مش مجرد حفظ قوانين... افهم العلم صح.</p>
+      <p class="description">
+        رحلة تعليمية تساعدك تفهم الأفكار العلمية،
+        وتربط المعلومات ببعضها، وتتعلم خطوة بخطوة.
+      </p>
+
+      <div class="grade-list">
+        <button class="grade red-grade" onclick="selectGrade('الأول الثانوي')">
+          الأول الثانوي<small>01 · المرحلة الدراسية</small>
+        </button>
+        <button class="grade blue-grade" onclick="selectGrade('الثاني الثانوي')">
+          الثاني الثانوي<small>02 · المرحلة الدراسية</small>
+        </button>
+        <button class="grade green-grade" onclick="selectGrade('الثالث الثانوي')">
+          الثالث الثانوي<small>03 · المرحلة الدراسية</small>
+        </button>
+      </div>
+
+      <div class="community">
+        <!-- استبدل الرابط برابط جروب الأكاديمية الحقيقي -->
+        <a class="whatsapp" href="https://www.whatsapp.com/"
+           target="_blank" rel="noopener">◉ جروب واتساب</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="feature">
+      <strong>⚗ شرح مبسط</strong>
+      <p>افهم الفكرة قبل حفظها</p>
+    </div>
+    <div class="feature">
+      <strong>✦ فهم الأفكار</strong>
+      <p>اربط المعلومات ببعضها</p>
+    </div>
+    <div class="feature">
+      <strong>▤ محتوى منظم</strong>
+      <p>رحلتك العلمية في مكان واحد</p>
+    </div>
+  </section>
+</main>
+
+<footer>2MJ لشرح العلوم · جميع الحقوق محفوظة © 2026</footer>
+
+<div class="modal" id="authModal"
+  onclick="if(event.target===this)closeAuth()">
+  <section class="dialog">
+    <button class="close" onclick="closeAuth()" aria-label="إغلاق">×</button>
+    <div class="dialog-head">
+      <div class="tag">2MJ · حساب الطالب</div>
+      <h2 id="formTitle">إنشاء حساب جديد</h2>
+      <p class="muted" id="formSubtitle">
+        أنشئ حسابك للانضمام إلى الأكاديمية.
+      </p>
+    </div>
+    <form id="authForm">
+      <div class="field" id="nameField">
+        <label for="fullName">اسم الطالب بالكامل</label>
+        <input id="fullName" autocomplete="name"
+          placeholder="اسم الطالب" required>
+      </div>
+
+      <div class="field">
+        <label for="studentPhone">رقم هاتف الطالب</label>
+        <input id="studentPhone" type="tel"
+          inputmode="tel" autocomplete="tel"
+          placeholder="+20 1XXXXXXXXX" required>
+      </div>
+
+      <div class="field" id="guardianField">
+        <label for="guardianPhone">رقم هاتف ولي الأمر</label>
+        <input id="guardianPhone" type="tel"
+          inputmode="tel" placeholder="+20 1XXXXXXXXX">
+      </div>
+
+      <div class="field">
+        <label for="password">كلمة المرور</label>
+        <input id="password" type="password"
+          minlength="8" autocomplete="new-password"
+          placeholder="8 أحرف على الأقل" required>
+      </div>
+
+      <div class="field" id="codeField">
+        <label for="subscriptionCode">كود الاشتراك</label>
+        <input id="subscriptionCode"
+          placeholder="الكود الذي أعطاه لك المدرس">
+      </div>
+
+      <button class="btn btn-primary full" id="submitBtn" type="submit">
+        إنشاء الحساب
+      </button>
+    </form>
+
+    <p class="message" id="formMessage" aria-live="polite"></p>
+
+    <button class="switch" id="switchBtn" onclick="switchAuth()">
+      لديك حساب بالفعل؟ سجّل الدخول
+    </button>
+  </section>
+</div>
+
+<div class="modal" id="verifyModal"
+  onclick="if(event.target===this)closeVerify()">
+  <section class="dialog">
+    <button class="close" onclick="closeVerify()" aria-label="إغلاق">×</button>
+    <div class="tag">التحقق من رقم الهاتف</div>
+    <h2>تأكيد رقم واتساب</h2>
+    <p class="muted">
+      في النسخة النهائية سنرسل رمز تحقق إلى رقم الطالب
+      عبر خدمة واتساب موثقة.
+    </p>
+    <div class="field">
+      <label for="otp">رمز التحقق</label>
+      <input id="otp" inputmode="numeric" autocomplete="one-time-code"
+        placeholder="أدخل الرمز المرسل">
+    </div>
+    <button class="btn btn-primary full" onclick="verifyNotice()">
+      تأكيد الرقم
+    </button>
+    <p class="message" id="verifyMessage" aria-live="polite"></p>
+  </section>
+</div>
+
+<script>
+let authMode = "signup";
+let selectedGrade = "";
+const $ = id => document.getElementById(id);
+
+function openAuth(mode) {
+  authMode = mode;
+  updateAuth();
+  $("authModal").classList.add("open");
+}
+function closeAuth() {
+  $("authModal").classList.remove("open");
+}
+function closeVerify() {
+  $("verifyModal").classList.remove("open");
+}
+function switchAuth() {
+  authMode = authMode === "signup" ? "login" : "signup";
+  updateAuth();
+}
+function updateAuth() {
+  const signup = authMode === "signup";
+  $("formTitle").textContent =
+    signup ? "إنشاء حساب جديد" : "تسجيل الدخول";
+  $("formSubtitle").textContent = signup
+    ? "أدخل بياناتك لإنشاء حساب في 2MJ."
+    : "سجّل الدخول باستخدام رقم هاتفك وكلمة المرور.";
+  $("nameField").hidden = !signup;
+  $("guardianField").hidden = !signup;
+  $("codeField").hidden = !signup;
+  $("fullName").required = signup;
+  $("guardianPhone").required = signup;
+  $("subscriptionCode").required = signup;
+  $("password").autocomplete = signup ? "new-password" : "current-password";
+  $("submitBtn").textContent = signup ? "إنشاء الحساب" : "تسجيل الدخول";
+  $("switchBtn").textContent = signup
+    ? "لديك حساب بالفعل؟ سجّل الدخول"
+    : "ليس لديك حساب؟ أنشئ حسابًا جديدًا";
+  $("formMessage").textContent = "";
+}
+function selectGrade(grade) {
+  selectedGrade = grade;
+  openAuth("signup");
+  $("formSubtitle").textContent =
+    "الصف المختار: " + grade + ". أنشئ حسابك للمتابعة.";
+}
+function toggleTheme() {
+  const light = document.body.classList.toggle("light");
+  $("themeBtn").textContent = light ? "☾" : "☀";
+  try {
+    localStorage.setItem("2mj-theme", light ? "light" : "dark");
+  } catch (_) {}
+}
+try {
+  if (localStorage.getItem("2mj-theme") === "light") {
+    document.body.classList.add("light");
+    $("themeBtn").textContent = "☾";
+  }
+} catch (_) {}
+$("authForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  $("formMessage").textContent = "";
+
+  if (authMode === "signup") {
+    $("formMessage").textContent =
+      "واجهة التسجيل جاهزة،بس إنشاء الحساب وإرسال رمز واتساب " +
+      "لسه ماضفناهمش. هنربطهم بسيرفر كويس قبل ماناخد بيانات الطلاب.";
+    return;
+  }
+
+  $("formMessage").textContent =
+    "تسجيل الدخول الحقيقي لسه ما اتربطش. لن ولم يتم إرسال بياناتك أو حفظها.";
+});
+
+function verifyNotice() {
+  $("verifyMessage").textContent =
+    "التحقق غير مفعّل بعد؛ لم يُرسل رمز حقيقي. " +
+    "سنضيف التحقق من السيرفر بعد إعداد خدمة واتساب.";
+}
+</script>
+<style>
+/* 2MJ Periodic Globe */
+#mj-globe-section {
+  --mj-bg: #0b1224;
+  --mj-card: #111d36;
+  --mj-text: #f4f7ff;
+  --mj-muted: #aab8d2;
+  background: var(--mj-bg);
+  color: var(--mj-text);
+  padding: 35px 14px;
+  border-radius: 24px;
+  margin: 28px auto;
+  overflow: hidden;
+  font-family: Tahoma, Arial, sans-serif;
+  text-align: center;
+}
+#mj-globe-section * { box-sizing: border-box; }
+#mj-globe-section .mj-heading {
+  font-size: clamp(24px, 4vw, 38px);
+  margin: 0 0 10px;
+}
+#mj-globe-section .mj-heading span { color: #38bdf8; }
+#mj-globe-section .mj-subtitle {
+  color: var(--mj-muted);
+  line-height: 1.9;
+  font-size: 14px;
+}
+#mj-globe-section .mj-stage {
+  width: min(100%, 520px);
+  aspect-ratio: 1;
+  margin: 8px auto 0;
+  position: relative;
+  perspective: 1000px;
+  touch-action: pan-y;
+}
+#mj-globe-section .mj-globe {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  animation: mj-spin 38s linear infinite;
+}
+#mj-globe-section .mj-stage:hover .mj-globe {
+  animation-play-state: paused;
+}
+#mj-globe-section .mj-tile {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: clamp(35px, 8vw, 49px);
+  height: clamp(43px, 9vw, 57px);
+  border: 1px solid var(--tile-color);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--tile-color) 17%, #0b1224);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1px;
+  padding: 2px;
+  cursor: pointer;
+  backface-visibility: hidden;
+  box-shadow: 0 0 9px color-mix(in srgb, var(--tile-color) 20%, transparent);
+  transition: background .2s, box-shadow .2s;
+}
+#mj-globe-section .mj-tile:hover,
+#mj-globe-section .mj-tile:focus-visible {
+  background: var(--tile-color);
+  box-shadow: 0 0 22px var(--tile-color);
+  outline: 2px solid white;
+}
+#mj-globe-section .mj-tile .mj-z {
+  font-size: 9px;
+  align-self: flex-start;
+}
+#mj-globe-section .mj-tile .mj-symbol {
+  font-size: 19px;
+  font-weight: 900;
+}
+#mj-globe-section .mj-tile .mj-mini-name {
+  font-size: 8px;
+  max-width: 100%;
+  overflow: hidden;
+}
+#mj-globe-section .mj-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 4px auto 22px;
+  max-width: 650px;
+}
+#mj-globe-section .mj-legend span {
+  color: var(--mj-muted);
+  font-size: 11px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+#mj-globe-section .mj-dot {
+  width: 9px; height: 9px; border-radius: 50%;
+  display: inline-block;
+}
+#mj-globe-section .mj-hint {
+  color: var(--mj-muted);
+  font-size: 12px;
+  margin: 0 0 16px;
+}
+#mj-globe-section .mj-search {
+  width: min(100%, 440px);
+  padding: 13px 16px;
+  border: 1px solid #2c4166;
+  background: var(--mj-card);
+  border-radius: 12px;
+  color: white;
+  font-size: 14px;
+  outline: none;
+  margin: 10px auto;
+}
+#mj-globe-section .mj-search:focus { border-color: #38bdf8; }
+#mj-globe-section .mj-count { color: var(--mj-muted); font-size: 12px; }
+#mj-globe-section .mj-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  background: rgba(0,0,0,.78);
+  backdrop-filter: blur(8px);
+}
+#mj-globe-section .mj-modal.mj-open { display: flex; }
+#mj-globe-section .mj-dialog {
+  width: min(100%, 490px);
+  max-height: 85vh;
+  overflow: auto;
+  text-align: right;
+  background: #101b32;
+  color: #f4f7ff;
+  border: 1px solid #344765;
+  border-radius: 22px;
+  padding: 23px;
+  box-shadow: 0 20px 70px #0009;
+}
+#mj-globe-section .mj-close-row {
+  display: flex; justify-content: space-between; align-items: center;
+}
+#mj-globe-section .mj-close {
+  background: #263653; color: white; border: 0;
+  border-radius: 10px; width: 38px; height: 38px;
+  cursor: pointer; font-size: 21px;
+}
+#mj-globe-section .mj-element-top {
+  display: flex; gap: 15px; align-items: center;
+  margin: 18px 0;
+}
+#mj-globe-section .mj-big-symbol {
+  width: 94px; height: 104px; flex-shrink: 0;
+  display: flex; flex-direction: column; justify-content: center;
+  border: 2px solid var(--tile-color);
+  border-radius: 15px;
+  background: color-mix(in srgb, var(--tile-color) 20%, #101b32);
+  text-align: center;
+}
+#mj-globe-section .mj-big-symbol strong { font-size: 38px; }
+#mj-globe-section .mj-big-symbol small { font-size: 12px; }
+#mj-globe-section .mj-element-title { font-size: 24px; margin: 0 0 8px; }
+#mj-globe-section .mj-tag {
+  display: inline-block; border-radius: 20px;
+  padding: 5px 10px; background: #243654;
+  color: #9de6ff; font-size: 12px;
+}
+#mj-globe-section .mj-facts {
+  display: grid; grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 9px; margin: 18px 0;
+}
+#mj-globe-section .mj-fact {
+  background: #192844; padding: 13px;
+  border-radius: 12px; min-width: 0;
+}
+#mj-globe-section .mj-fact small {
+  display: block; color: #aab8d2; margin-bottom: 7px;
+}
+#mj-globe-section .mj-fact strong { font-size: 15px; overflow-wrap: anywhere; }
+#mj-globe-section .mj-info {
+  background: #192844; border-radius: 12px;
+  padding: 14px; margin-top: 10px; line-height: 1.9;
+}
+#mj-globe-section .mj-info h4 {
+  color: #38bdf8; margin: 0 0 5px; font-size: 14px;
+}
+#mj-globe-section .mj-info p { margin: 0; font-size: 13px; color: #e0e8f7; }
+@keyframes mj-spin {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(360deg); }
+}
+@media (max-width: 480px) {
+  #mj-globe-section { padding: 25px 8px; }
+  #mj-globe-section .mj-dialog { padding: 16px; }
+  #mj-globe-section .mj-tile { width: 34px; height: 42px; }
+  #mj-globe-section .mj-tile .mj-symbol { font-size: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #mj-globe-section .mj-globe { animation-duration: 120s; }
+}
+</style>
+
+<section id="mj-globe-section" dir="rtl">
+  <h2 class="mj-heading">استكشف <span>الجدول الدوري</span></h2>
+  <p class="mj-subtitle">
+    118 عنصرًا كيميائيًا في عالم ثلاثي الأبعاد.<br>
+    اختار أي عنصر واكتشف أسراره.
+  </p>
+
+  <input id="mj-search" class="mj-search" type="search"
+    placeholder="ابحث عن عنصر: حديد، Fe، أو 26..."
+    aria-label="ابحث عن عنصر كيميائي">
+
+  <div class="mj-count" id="mj-count">118 عنصرًا</div>
+
+  <div class="mj-stage" id="mj-stage" aria-label="الكرة التفاعلية للجدول الدوري">
+    <div class="mj-globe" id="mj-globe"></div>
+  </div>
+
+  <p class="mj-hint">اضغط على أي عنصر لعرض معلوماته</p>
+  <div class="mj-legend" id="mj-legend"></div>
+
+  <div class="mj-modal" id="mj-modal" role="dialog"
+    aria-modal="true" aria-label="معلومات العنصر">
+    <div class="mj-dialog">
+      <div class="mj-close-row">
+        <span class="mj-tag">موسوعة 2MJ الكيميائية</span>
+        <button class="mj-close" id="mj-close" aria-label="إغلاق">×</button>
+      </div>
+      <div id="mj-details"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+(() => {
+  const root = document.getElementById("mj-globe-section");
+  if (!root || root.dataset.ready) return;
+  root.dataset.ready = "1";
+
+  // الرمز | الاسم العربي | الاسم الإنجليزي | الكتلة الذرية التقريبية
+  const raw = `
+H|الهيدروجين|Hydrogen|1.008
+He|الهيليوم|Helium|4.0026
+Li|الليثيوم|Lithium|6.94
+Be|البيريليوم|Beryllium|9.0122
+B|البورون|Boron|10.81
+C|الكربون|Carbon|12.011
+N|النيتروجين|Nitrogen|14.007
+O|الأكسجين|Oxygen|15.999
+F|الفلور|Fluorine|18.998
+Ne|النيون|Neon|20.180
+Na|الصوديوم|Sodium|22.990
+Mg|المغنيسيوم|Magnesium|24.305
+Al|الألومنيوم|Aluminium|26.982
+Si|السيليكون|Silicon|28.085
+P|الفوسفور|Phosphorus|30.974
+S|الكبريت|Sulfur|32.06
+Cl|الكلور|Chlorine|35.45
+Ar|الأرجون|Argon|39.948
+K|البوتاسيوم|Potassium|39.098
+Ca|الكالسيوم|Calcium|40.078
+Sc|السكانديوم|Scandium|44.956
+Ti|التيتانيوم|Titanium|47.867
+V|الفاناديوم|Vanadium|50.942
+Cr|الكروم|Chromium|51.996
+Mn|المنجنيز|Manganese|54.938
+Fe|الحديد|Iron|55.845
+Co|الكوبالت|Cobalt|58.933
+Ni|النيكل|Nickel|58.693
+Cu|النحاس|Copper|63.546
+Zn|الزنك|Zinc|65.38
+Ga|الجاليوم|Gallium|69.723
+Ge|الجرمانيوم|Germanium|72.630
+As|الزرنيخ|Arsenic|74.922
+Se|السيلينيوم|Selenium|78.971
+Br|البروم|Bromine|79.904
+Kr|الكريبتون|Krypton|83.798
+Rb|الروبيديوم|Rubidium|85.468
+Sr|السترونشيوم|Strontium|87.62
+Y|الإيتريوم|Yttrium|88.906
+Zr|الزركونيوم|Zirconium|91.224
+Nb|النيوبيوم|Niobium|92.906
+Mo|الموليبدينوم|Molybdenum|95.95
+Tc|التكنيتيوم|Technetium|98
+Ru|الروثينيوم|Ruthenium|101.07
+Rh|الروديوم|Rhodium|102.906
+Pd|البلاديوم|Palladium|106.42
+Ag|الفضة|Silver|107.868
+Cd|الكادميوم|Cadmium|112.414
+In|الإنديوم|Indium|114.818
+Sn|القصدير|Tin|118.710
+Sb|الأنتيمون|Antimony|121.760
+Te|التيلوريوم|Tellurium|127.60
+I|اليود|Iodine|126.904
+Xe|الزينون|Xenon|131.293
+Cs|السيزيوم|Caesium|132.905
+Ba|الباريوم|Barium|137.327
+La|اللانثانوم|Lanthanum|138.905
+Ce|السيريوم|Cerium|140.116
+Pr|البراسيوديميوم|Praseodymium|140.908
+Nd|النيوديميوم|Neodymium|144.242
+Pm|البروميثيوم|Promethium|145
+Sm|الساماريوم|Samarium|150.36
+Eu|اليوروبيوم|Europium|151.964
+Gd|الجادولينيوم|Gadolinium|157.25
+Tb|التيربيوم|Terbium|158.925
+Dy|الديسبروسيوم|Dysprosium|162.500
+Ho|الهولميوم|Holmium|164.930
+Er|الإربيوم|Erbium|167.259
+Tm|الثوليوم|Thulium|168.934
+Yb|الإيتربيوم|Ytterbium|173.045
+Lu|اللوتيتيوم|Lutetium|174.967
+Hf|الهافنيوم|Hafnium|178.49
+Ta|التانتالوم|Tantalum|180.948
+W|التنجستن|Tungsten|183.84
+Re|الرينيوم|Rhenium|186.207
+Os|الأوزميوم|Osmium|190.23
+Ir|الإيريديوم|Iridium|192.217
+Pt|البلاتين|Platinum|195.084
+Au|الذهب|Gold|196.967
+Hg|الزئبق|Mercury|200.592
+Tl|الثاليوم|Thallium|204.38
+Pb|الرصاص|Lead|207.2
+Bi|البزموت|Bismuth|208.980
+Po|البولونيوم|Polonium|209
+At|الأستاتين|Astatine|210
+Rn|الرادون|Radon|222
+Fr|الفرانسيوم|Francium|223
+Ra|الراديوم|Radium|226
+Ac|الأكتينيوم|Actinium|227
+Th|الثوريوم|Thorium|232.038
+Pa|البروتكتينيوم|Protactinium|231.036
+U|اليورانيوم|Uranium|238.029
+Np|النبتونيوم|Neptunium|237
+Pu|البلوتونيوم|Plutonium|244
+Am|الأمريسيوم|Americium|243
+Cm|الكوريوم|Curium|247
+Bk|البركيليوم|Berkelium|247
+Cf|الكاليفورنيوم|Californium|251
+Es|الأينشتاينيوم|Einsteinium|252
+Fm|الفرميوم|Fermium|257
+Md|المندليفيوم|Mendelevium|258
+No|النوبليوم|Nobelium|259
+Lr|اللورنسيوم|Lawrencium|266
+Rf|الرذرفورديوم|Rutherfordium|267
+Db|الدوبنيوم|Dubnium|268
+Sg|السيبورجيوم|Seaborgium|269
+Bh|البوهريوم|Bohrium|270
+Hs|الهاسيوم|Hassium|277
+Mt|المايتنريوم|Meitnerium|278
+Ds|الدارمشتاتيوم|Darmstadtium|281
+Rg|الرونتجينيوم|Roentgenium|282
+Cn|الكوبرنيسيوم|Copernicium|285
+Nh|النيهونيوم|Nihonium|286
+Fl|الفليروفيوم|Flerovium|289
+Mc|الموسكوفيوم|Moscovium|290
+Lv|الليفرموريوم|Livermorium|293
+Ts|التينيسين|Tennessine|294
+Og|الأوغانيسون|Oganesson|294
+`.trim();
+
+  const elements = raw.split("\n").map((line, index) => {
+    const [symbol, name, english, mass] = line.split("|");
+    return { z: index + 1, symbol, name, english, mass: Number(mass) };
+  });
+
+  const colors = {
+    "لافلز": "#38bdf8",
+    "غاز نبيل": "#a78bfa",
+    "فلز قلوي": "#fb7185",
+    "فلز قلوي ترابي": "#fbbf24",
+    "فلز انتقالي": "#60a5fa",
+    "شبه فلز": "#2dd4bf",
+    "هالوجين": "#f472b6",
+    "فلز بعد انتقالي": "#34d399",
+    "لانثانيد": "#c084fc",
+    "أكتينيد": "#fb7185",
+    "عنصر فائق الثقل": "#94a3b8"
+  };
+
+  function category(z) {
+    if ([2,10,18,36,54,86,118].includes(z)) return "غاز نبيل";
+    if ([9,17,35,53,85,117].includes(z)) return "هالوجين";
+    if ([3,11,19,37,55,87].includes(z)) return "فلز قلوي";
+    if ([4,12,20,38,56,88].includes(z)) return "فلز قلوي ترابي";
+    if ((z >= 57 && z <= 71)) return "لانثانيد";
+    if ((z >= 89 && z <= 103)) return "أكتينيد";
+    if ([5,14,32,33,51,52].includes(z)) return "شبه فلز";
+    if ([6,7,8,15,16,34].includes(z)) return "لافلز";
+    if ([13,31,49,50,81,82,83,84].includes(z)) return "فلز بعد انتقالي";
+    if (z >= 104) return "عنصر فائق الثقل";
+    if ([21,22,23,24,25,26,27,28,29,30,39,40,41,42,43,44,45,46,47,48,72,73,74,75,76,77,78,79,80].includes(z)) return "فلز انتقالي";
+    return "فلز";
+  }
+
+  const facts = {
+    1:["الهيدروجين يدخل في تركيب الماء والنجوم، ويُدرس في الطاقة النظيفة.","هو أكثر العناصر وفرةً في الكون، لكنه قليل نسبيًا في صورة غاز حر على الأرض.","صناعة الأمونيا، وخلايا الوقود، وبعض العمليات الصناعية."],
+    2:["الهيليوم غاز خامل وخفيف جدًا، ومهم في التبريد العلمي.","نادر في الغلاف الجوي للأرض، ويُستخرج غالبًا من بعض حقول الغاز الطبيعي.","تبريد أجهزة الرنين المغناطيسي، والبالونات، والأبحاث."],
+    6:["الكربون أساس الكيمياء العضوية والحياة المعروفة.","شائع في الكائنات الحية والصخور والوقود، ويوجد في صور متعددة.","الجرافيت، وألياف الكربون، والمواد العضوية، والإلكترونيات."],
+    7:["النيتروجين عنصر أساسي في البروتينات والأحماض النووية.","يشكل نحو 78% من هواء الأرض.","صناعة الأسمدة والأمونيا وحفظ بعض المنتجات."],
+    8:["الأكسجين ضروري للتنفس الخلوي ويدعم الاحتراق.","يشكل نحو 21% من هواء الأرض، وهو شائع في القشرة الأرضية والماء.","الطب والصناعة ومعالجة المياه."],
+    11:["الصوديوم مهم في توازن السوائل والإشارات العصبية، لكن فلزه شديد التفاعل.","مركباته شائعة، أما فلزه الحر فلا يوجد عادةً في الطبيعة بسبب تفاعله.","مصابيح خاصة وصناعات كيميائية؛ وأملاحه لها استخدامات أخرى."],
+    13:["الألومنيوم خفيف نسبيًا ومقاوم للتآكل بسبب طبقة أكسيده.","شائع في القشرة الأرضية.","الطائرات، ووسائل النقل، وعلب المشروبات، والبناء."],
+    14:["السيليكون أساس صناعة أشباه الموصلات، ويوجد في كثير من المعادن.","شائع جدًا في القشرة الأرضية.","الرقائق الإلكترونية والخلايا الشمسية والزجاج عبر مركباته."],
+    15:["الفوسفور ضروري للحمض النووي وATP، ومهم لنمو النباتات.","يوجد غالبًا في المعادن والمركبات، لا كعنصر حر.","الأسمدة وصناعة بعض المواد الكيميائية."],
+    17:["الكلور يدخل في تعقيم المياه وصناعة مركبات مهمة.","يوجد طبيعيًا غالبًا في الأملاح، ومنها ملح الطعام.","معالجة المياه وصناعة مواد كيميائية؛ غاز الكلور نفسه سام."],
+    20:["الكالسيوم مهم للعظام والأسنان ووظائف العضلات.","شائع في الحجر الجيري والمعادن والعظام.","الإسمنت والجير، ومركباته تدخل في صناعات كثيرة."],
+    26:["الحديد عنصر أساسي في صناعة الفولاذ، ويدخل في الهيموجلوبين.","وفير في الصخور الأرضية ولب الأرض.","البناء والآلات ووسائل النقل."],
+    29:["النحاس موصل ممتاز للكهرباء والحرارة.","متوفر في خامات معدنية معروفة.","الأسلاك الكهربائية والإلكترونيات والسبائك."],
+    47:["الفضة من أفضل موصلات الكهرباء، ولها خواص مضادة لبعض الميكروبات.","أقل وفرة من كثير من الفلزات الشائعة، وتُستخرج من خامات متنوعة.","الإلكترونيات والمجوهرات والخلايا الشمسية."],
+    79:["الذهب مقاوم للتآكل وسهل التشكيل نسبيًا.","فلز نادر نسبيًا في القشرة الأرضية.","الإلكترونيات والمجوهرات وبعض التطبيقات الطبية."],
+    80:["الزئبق فلز سائل عند درجة حرارة الغرفة، وله مخاطر صحية.","يوجد بكميات محدودة في خامات طبيعية.","استخداماته الحديثة مقيدة بسبب سميته؛ كان يُستخدم في أجهزة قياس قديمة."],
+    82:["الرصاص كثيف، لكن التعرض له سام خصوصًا للأطفال.","يوجد في خامات مثل الجالينا.","بطاريات الرصاص وبعض تطبيقات الحماية الإشعاعية ضمن ضوابط السلامة."],
+    92:["اليورانيوم عنصر ثقيل مشع، وله أهمية في دراسة الطاقة النووية.","موجود طبيعيًا بتركيزات متفاوتة في الصخور والتربة.","وقود نووي ضمن منشآت مرخصة، وأبحاث علمية."],
+    43:["التكنيتيوم لا يمتلك نظائر مستقرة، وهو مهم في الطب النووي.","نادر جدًا طبيعيًا؛ ويُنتج في المفاعلات أو المنشآت المتخصصة.","بعض النظائر تُستخدم في التصوير الطبي تحت إشراف متخصص."],
+    61:["البروميثيوم لا يمتلك نظائر مستقرة.","نادر جدًا طبيعيًا بسبب نشاط نظائره الإشعاعي.","أبحاث وتطبيقات متخصصة في بعض مصادر الطاقة والأجهزة."],
+    85:["الأستاتين نادر للغاية ومشع.","من أندر العناصر الطبيعية؛ وتوجد منه آثار ضئيلة جدًا.","أبحاث الطب النووي، ولا يزال استخدامه محدودًا."],
+    87:["الفرانسيوم شديد النشاط الإشعاعي ونادر للغاية.","توجد منه آثار ضئيلة جدًا في سلاسل التحلل الإشعاعي الطبيعية.","أبحاث علمية أساسية فقط تقريبًا."],
+    118:["الأوغانيسون عنصر فائق الثقل، ولا نعرف عنه إلا القليل بسبب قصر عمر ذراته.","مصنّع في المختبر، ولا يوجد طبيعيًا بكميات قابلة للجمع.","أبحاث الفيزياء النووية."],
+    117:["التينيسين عنصر فائق الثقل ومشع.","مصنّع في المختبر، ولم تُنتج منه إلا ذرات قليلة.","أبحاث تركيب العناصر الثقيلة."],
+    113:["النيهونيوم عنصر فائق الثقل ومشع.","مصنّع في المختبر.","أبحاث الفيزياء النووية."],
+    115:["الموسكوفيوم عنصر فائق الثقل ومشع.","مصنّع في المختبر.","أبحاث الفيزياء النووية."],
+    116:["الليفرموريوم عنصر فائق الثقل ومشع.","مصنّع في المختبر.","أبحاث الفيزياء النووية."]
+  };
+
+  function rarity(e, cat) {
+    if ([43,61,85,87,93,94,95,96,97,98,99,100,101,102,103].includes(e.z) || e.z >= 104)
+      return "نادر للغاية أو مُصنّع";
+    if ([3,4,21,37,39,57,58,59,60,62,63,64,65,66,67,68,69,70,71].includes(e.z))
+      return "أقل وفرة أو يحتاج لاستخلاص متخصص";
+    if ([26,13,14,8,6,11,12,20,29,30,47,79].includes(e.z))
+      return "متوفر نسبيًا";
+    if (cat === "غاز نبيل") return "يوجد بكميات متفاوتة في الغلاف الجوي أو مصادر طبيعية";
+    return "تختلف وفرته حسب النظير والمصدر الطبيعي";
+  }
+
+  function details(e) {
+    const cat = category(e.z);
+    if (facts[e.z]) return {cat, ...{importance:facts[e.z][0], rarity:facts[e.z][1], uses:facts[e.z][2]}};
+    let importance, uses;
+    if (cat === "غاز نبيل") {
+      importance = "غاز خامل نسبيًا، وتختلف خواصه وتطبيقاته بحسب العنصر.";
+      uses = "الإضاءة أو العزل أو التبريد والأبحاث بحسب نوع الغاز.";
+    } else if (cat === "فلز قلوي" || cat === "فلز قلوي ترابي") {
+      importance = "فلز نشط كيميائيًا، وتوجد تطبيقاته غالبًا في مركباته أو السبائك.";
+      uses = "الصناعات الكيميائية والمواد والسبائك، حسب خواص العنصر.";
+    } else if (cat === "لانثانيد") {
+      importance = "من عناصر اللانثانيدات، ولعدد منها خواص مغناطيسية أو ضوئية مميزة.";
+      uses = "المغناطيسات القوية والإلكترونيات والمواد البصرية بحسب العنصر.";
+    } else if (cat === "أكتينيد") {
+      importance = "عنصر من الأكتينيدات؛ معظم عناصر هذه المجموعة مشعة.";
+      uses = "أبحاث نووية وتطبيقات متخصصة، بحسب النظير والعنصر.";
+    } else if (cat === "عنصر فائق الثقل") {
+      importance = "عنصر فائق الثقل غير مستقر، وخصائصه المدروسة محدودة.";
+      uses = "الأبحاث العلمية حول بنية النواة والعناصر الثقيلة.";
+    } else if (cat === "هالوجين") {
+      importance = "من الهالوجينات، وتكوّن عناصر هذه المجموعة مركبات مهمة.";
+      uses = "التصنيع الكيميائي ومعالجة المواد، وفق العنصر ومركباته.";
+    } else if (cat === "شبه فلز") {
+      importance = "له خواص وسطية بين الفلزات واللافلزات.";
+      uses = "بعض تطبيقات أشباه الموصلات والسبائك والمواد الكيميائية.";
+    } else {
+      importance = "له خواص كيميائية وفيزيائية تميزه، وتختلف أهميته حسب التطبيق.";
+      uses = "تطبيقات صناعية أو علمية متخصصة بحسب خواص العنصر.";
+    }
+    return {cat, importance, rarity:rarity(e,cat), uses};
+  }
+
+  const globe = root.querySelector("#mj-globe");
+  const search = root.querySelector("#mj-search");
+  const count = root.querySelector("#mj-count");
+  const stage = root.querySelector("#mj-stage");
+  const modal = root.querySelector("#mj-modal");
+  const detailsBox = root.querySelector("#mj-details");
+  const legend = root.querySelector("#mj-legend");
+  let selected = null;
+  const radius = () => Math.min(stage.clientWidth * 0.43, 220);
+
+  Object.entries(colors).forEach(([name,color]) => {
+    const item = document.createElement("span");
+    item.innerHTML = `<i class="mj-dot" style="background:${color}"></i>${name}`;
+    legend.appendChild(item);
+  });
+
+  function render(query = "") {
+    globe.innerHTML = "";
+    const q = query.trim().toLowerCase();
+    const shown = elements.filter(e =>
+      !q || e.name.toLowerCase().includes(q) ||
+      e.english.toLowerCase().includes(q) ||
+      e.symbol.toLowerCase() === q ||
+      String(e.z) === q
+    );
+    count.textContent = `عرض ${shown.length} من أصل 118 عنصرًا`;
+
+    shown.forEach(e => {
+      const i = e.z - 1;
+      const phi = Math.acos(1 - 2 * (i + 0.5) / elements.length);
+      const theta = Math.PI * (1 + Math.sqrt(5)) * i;
+      const x = Math.sin(phi) * Math.cos(theta);
+      const y = Math.cos(phi);
+      const z = Math.sin(phi) * Math.sin(theta);
+      const cat = category(e.z);
+      const tile = document.createElement("button");
+      tile.type = "button";
+      tile.className = "mj-tile";
+      tile.style.setProperty("--tile-color", colors[cat] || "#60a5fa");
+      tile.style.transform =
+        `translate(-50%,-50%) translate3d(${x*radius()}px,${y*radius()}px,${z*radius()}px)`;
+      tile.setAttribute("aria-label", `${e.name}، العدد الذري ${e.z}`);
+      tile.innerHTML =
+        `<span class="mj-z">${e.z}</span>` +
+        `<span class="mj-symbol">${e.symbol}</span>` +
+        `<span class="mj-mini-name">${e.name}</span>`;
+      tile.addEventListener("click", () => openDetails(e));
+      globe.appendChild(tile);
+    });
+  }
+
+  function openDetails(e) {
+    selected = e;
+    const d = details(e);
+    const color = colors[d.cat] || "#60a5fa";
+    detailsBox.innerHTML = `
+      <div class="mj-element-top">
+        <div class="mj-big-symbol" style="--tile-color:${color}">
+          <small>${e.z}</small><strong>${e.symbol}</strong><small>${e.mass}</small>
+        </div>
+        <div>
+          <h3 class="mj-element-title">${e.name}</h3>
+          <div style="color:#aab8d2;font-size:13px">${e.english}</div>
+          <p><span class="mj-tag">${d.cat}</span></p>
+        </div>
+      </div>
+      <div class="mj-facts">
+        <div class="mj-fact"><small>العدد الذري</small><strong>${e.z}</strong></div>
+        <div class="mj-fact"><small>الكتلة الذرية التقريبية</small><strong>${e.mass}</strong></div>
+        <div class="mj-fact"><small>الرمز الكيميائي</small><strong>${e.symbol}</strong></div>
+        <div class="mj-fact"><small>الندرة</small><strong>${d.rarity}</strong></div>
+      </div>
+      <div class="mj-info"><h4>أهميته</h4><p>${d.importance}</p></div>
+      <div class="mj-info"><h4>استخداماته</h4><p>${d.uses}</p></div>
+      <p style="font-size:11px;color:#aab8d2;line-height:1.8">
+        ملاحظة: الكتل لبعض العناصر المشعة أو فائقة الثقل تمثل أعدادًا كتلية تقريبية لنظائر معروفة، وليست كتلًا ذرية قياسية. معلومات الندرة والاستخدامات هنا تعريفية ومختصرة.
+      </p>`;
+    modal.classList.add("mj-open");
+  }
+
+  function closeDetails() {
+    modal.classList.remove("mj-open");
+    selected = null;
+  }
+
+  root.querySelector("#mj-close").addEventListener("click", closeDetails);
+  modal.addEventListener("click", e => {
+    if (e.target === modal) closeDetails();
+  });
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape") closeDetails();
+  });
+  search.addEventListener("input", () => render(search.value));
+
+  // عدّل نصف قطر الكرة عند تغيير حجم الشاشة
+  window.addEventListener("resize", () => render(search.value));
+
+  render();
+})();
+</script>
+</body>
+</html>
