@@ -38,9 +38,9 @@ body {
   min-height: 100vh;
   transition: background .25s, color .25s;
 }
-button, input { font: inherit; }
+button, input, select { font: inherit; }
 button { cursor: pointer; }
-button:focus-visible, input:focus-visible {
+button:focus-visible, input:focus-visible, select:focus-visible {
   outline: 2px solid #6ea2ff;
   outline-offset: 3px;
 }
@@ -109,76 +109,6 @@ main {
   position: relative;
   display: grid;
   place-items: center;
-}
-.orbit {
-  position: absolute;
-  width: 330px;
-  height: 330px;
-  border: 1px solid #387cff36;
-  border-radius: 50%;
-  transform: rotate(-24deg) scaleY(.72);
-}
-.orbit.two {
-  width: 270px;
-  height: 390px;
-  transform: rotate(45deg) scaleY(.7);
-  border-color: #9b69ff36;
-}
-.periodic {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(2, 132px);
-  gap: 13px;
-  direction: ltr;
-}
-.element {
-  aspect-ratio: 1 / 1.08;
-  padding: 10px;
-  border: 1px solid #4a79d5;
-  border-radius: 13px;
-  background: linear-gradient(145deg,#18294a,#0c1427);
-  box-shadow: 0 0 25px var(--glow);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
-  overflow: hidden;
-}
-body.light .element {
-  background: linear-gradient(145deg,#fff,#e8efff);
-}
-.element::after {
-  content: "";
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  background: #4b82ff13;
-  border-radius: 50%;
-  top: -48px;
-  right: -45px;
-}
-.element.purple { border-color: #9866ed; }
-.element.green { border-color: #22b98b; }
-.element.red { border-color: #ef607e; }
-.atomic {
-  font-size: 12px;
-  color: var(--muted);
-}
-.symbol {
-  font-size: 48px;
-  line-height: 1;
-  font-weight: 900;
-  color: #6ba1ff;
-  text-align: center;
-}
-.purple .symbol { color: #bc9aff; }
-.green .symbol { color: #50ddb0; }
-.red .symbol { color: #ff8399; }
-.mass { font-size: 12px; color: var(--muted); text-align: center; }
-.element-name {
-  font-size: 12px;
-  text-align: center;
-  color: var(--text);
 }
 .content { min-width: 0; }
 .tag {
@@ -299,6 +229,16 @@ h1 span { color: #4d88ff; }
   direction: rtl;
 }
 .field input:focus { border-color: var(--blue); }
+.field select {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  color: var(--text);
+  background: var(--bg);
+  direction: rtl;
+}
+.field select:focus { border-color: var(--blue); }
 .full { width: 100%; margin-top: 18px; }
 .switch {
   display: block;
@@ -313,6 +253,7 @@ h1 span { color: #4d88ff; }
   line-height: 1.8;
   color: var(--muted);
 }
+.message.error { color: #ff4d4f; font-weight: bold; }
 footer {
   text-align: center;
   border-top: 1px solid var(--border);
@@ -320,308 +261,7 @@ footer {
   padding: 24px;
   font-size: 12px;
 }
-@media(max-width:800px) {
-  header { height: auto; padding: 13px 4%; flex-wrap: wrap; }
-  .brand h2 { font-size: 15px; }
-  .header-actions { gap: 5px; }
-  .btn { padding: 10px; font-size: 12px; }
-  main { padding: 35px 5%; }
-  .hero { grid-template-columns: 1fr; gap: 15px; }
-  .content { text-align: center; }
-  .visual { order: 2; min-height: 330px; }
-  .description { margin-inline: auto; }
-  h1 { font-size: 48px; }
-  .subtitle { font-size: 17px; }
-  .grade-list { gap: 6px; }
-  .grade { font-size: 12px; }
-  .community { justify-content: center; }
-  .features { gap: 7px; margin-top: 25px; }
-  .feature { padding: 16px 5px; }
-  .feature p { font-size: 11px; }
-}
-@media(max-width:390px) {
-  .logo { width: 43px; height: 43px; }
-  .brand h2 { font-size: 13px; }
-  .brand small { font-size: 10px; }
-  .header-actions .btn { padding: 9px 7px; }
-  .periodic { grid-template-columns: repeat(2,112px); }
-  .symbol { font-size: 40px; }
-}
-</style>
-</head>
-<body>
-<header>
-  <div class="brand">
-    <div class="logo">2MJ</div>
-    <div>
-      <h2>2MJ لشرح العلوم</h2>
-      <small>العلم يبدأ بسؤال</small>
-    </div>
-  </div>
-  <div class="header-actions">
-    <button class="btn btn-primary" onclick="openAuth('signup')">
-      + حساب جديد
-    </button>
-    <button class="btn" onclick="openAuth('login')">
-      تسجيل الدخول
-    </button>
-    <button class="theme" id="themeBtn" onclick="toggleTheme()"
-      aria-label="تغيير المظهر">☀</button>
-  </div>
-</header>
 
-<main>
-  <section class="hero">
-    <div class="visual" aria-label="عناصر كيميائية زخرفية">
-      <div class="orbit"></div>
-      <div class="orbit two"></div>
-      <div class="periodic">
-        <div class="element">
-          <span class="atomic">1</span>
-          <span class="symbol">H</span>
-          <span class="mass">1.008</span>
-          <span class="element-name">الهيدروجين</span>
-        </div>
-        <div class="element purple">
-          <span class="atomic">8</span>
-          <span class="symbol">O</span>
-          <span class="mass">15.999</span>
-          <span class="element-name">الأكسجين</span>
-        </div>
-        <div class="element green">
-          <span class="atomic">11</span>
-          <span class="symbol">Na</span>
-          <span class="mass">22.990</span>
-          <span class="element-name">الصوديوم</span>
-        </div>
-        <div class="element red">
-          <span class="atomic">26</span>
-          <span class="symbol">Fe</span>
-          <span class="mass">55.845</span>
-          <span class="element-name">الحديد</span>
-        </div>
-        <div class="element purple">
-          <span class="atomic">17</span>
-          <span class="symbol">Cl</span>
-          <span class="mass">35.45</span>
-          <span class="element-name">الكلور</span>
-        </div>
-        <div class="element green">
-          <span class="atomic">6</span>
-          <span class="symbol">C</span>
-          <span class="mass">12.011</span>
-          <span class="element-name">الكربون</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="content">
-      <div class="tag">2MJ · SCIENCE ACADEMY</div>
-      <h1>2MJ لشرح <span>العلوم</span></h1>
-      <p class="subtitle">مش مجرد حفظ قوانين... افهم العلم صح.</p>
-      <p class="description">
-        رحلة تعليمية تساعدك تفهم الأفكار العلمية،
-        وتربط المعلومات ببعضها، وتتعلم خطوة بخطوة.
-      </p>
-
-      <div class="grade-list">
-        <button class="grade red-grade" onclick="selectGrade('الأول الثانوي')">
-          الأول الثانوي<small>01 · المرحلة الدراسية</small>
-        </button>
-        <button class="grade blue-grade" onclick="selectGrade('الثاني الثانوي')">
-          الثاني الثانوي<small>02 · المرحلة الدراسية</small>
-        </button>
-        <button class="grade green-grade" onclick="selectGrade('الثالث الثانوي')">
-          الثالث الثانوي<small>03 · المرحلة الدراسية</small>
-        </button>
-      </div>
-
-      <div class="community">
-        <!-- استبدل الرابط برابط جروب الأكاديمية الحقيقي -->
-        <a class="whatsapp" href="https://www.whatsapp.com/"
-           target="_blank" rel="noopener">◉ جروب واتساب</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="features">
-    <div class="feature">
-      <strong>⚗ شرح مبسط</strong>
-      <p>افهم الفكرة قبل حفظها</p>
-    </div>
-    <div class="feature">
-      <strong>✦ فهم الأفكار</strong>
-      <p>اربط المعلومات ببعضها</p>
-    </div>
-    <div class="feature">
-      <strong>▤ محتوى منظم</strong>
-      <p>رحلتك العلمية في مكان واحد</p>
-    </div>
-  </section>
-</main>
-
-<footer>2MJ لشرح العلوم · جميع الحقوق محفوظة © 2026</footer>
-
-<div class="modal" id="authModal"
-  onclick="if(event.target===this)closeAuth()">
-  <section class="dialog">
-    <button class="close" onclick="closeAuth()" aria-label="إغلاق">×</button>
-    <div class="dialog-head">
-      <div class="tag">2MJ · حساب الطالب</div>
-      <h2 id="formTitle">إنشاء حساب جديد</h2>
-      <p class="muted" id="formSubtitle">
-        أنشئ حسابك للانضمام إلى الأكاديمية.
-      </p>
-    </div>
-    <form id="authForm">
-      <div class="field" id="nameField">
-        <label for="fullName">اسم الطالب بالكامل</label>
-        <input id="fullName" autocomplete="name"
-          placeholder="اسم الطالب" required>
-      </div>
-
-      <div class="field">
-        <label for="studentPhone">رقم هاتف الطالب</label>
-        <input id="studentPhone" type="tel"
-          inputmode="tel" autocomplete="tel"
-          placeholder="+20 1XXXXXXXXX" required>
-      </div>
-
-      <div class="field" id="guardianField">
-        <label for="guardianPhone">رقم هاتف ولي الأمر</label>
-        <input id="guardianPhone" type="tel"
-          inputmode="tel" placeholder="+20 1XXXXXXXXX">
-      </div>
-
-      <div class="field">
-        <label for="password">كلمة المرور</label>
-        <input id="password" type="password"
-          minlength="8" autocomplete="new-password"
-          placeholder="8 أحرف على الأقل" required>
-      </div>
-
-      <div class="field" id="codeField">
-        <label for="subscriptionCode">كود الاشتراك</label>
-        <input id="subscriptionCode"
-          placeholder="الكود الذي أعطاه لك المدرس">
-      </div>
-
-      <button class="btn btn-primary full" id="submitBtn" type="submit">
-        إنشاء الحساب
-      </button>
-    </form>
-
-    <p class="message" id="formMessage" aria-live="polite"></p>
-
-    <button class="switch" id="switchBtn" onclick="switchAuth()">
-      لديك حساب بالفعل؟ سجّل الدخول
-    </button>
-  </section>
-</div>
-
-<div class="modal" id="verifyModal"
-  onclick="if(event.target===this)closeVerify()">
-  <section class="dialog">
-    <button class="close" onclick="closeVerify()" aria-label="إغلاق">×</button>
-    <div class="tag">التحقق من رقم الهاتف</div>
-    <h2>تأكيد رقم واتساب</h2>
-    <p class="muted">
-      في النسخة النهائية سنرسل رمز تحقق إلى رقم الطالب
-      عبر خدمة واتساب موثقة.
-    </p>
-    <div class="field">
-      <label for="otp">رمز التحقق</label>
-      <input id="otp" inputmode="numeric" autocomplete="one-time-code"
-        placeholder="أدخل الرمز المرسل">
-    </div>
-    <button class="btn btn-primary full" onclick="verifyNotice()">
-      تأكيد الرقم
-    </button>
-    <p class="message" id="verifyMessage" aria-live="polite"></p>
-  </section>
-</div>
-
-<script>
-let authMode = "signup";
-let selectedGrade = "";
-const $ = id => document.getElementById(id);
-
-function openAuth(mode) {
-  authMode = mode;
-  updateAuth();
-  $("authModal").classList.add("open");
-}
-function closeAuth() {
-  $("authModal").classList.remove("open");
-}
-function closeVerify() {
-  $("verifyModal").classList.remove("open");
-}
-function switchAuth() {
-  authMode = authMode === "signup" ? "login" : "signup";
-  updateAuth();
-}
-function updateAuth() {
-  const signup = authMode === "signup";
-  $("formTitle").textContent =
-    signup ? "إنشاء حساب جديد" : "تسجيل الدخول";
-  $("formSubtitle").textContent = signup
-    ? "أدخل بياناتك لإنشاء حساب في 2MJ."
-    : "سجّل الدخول باستخدام رقم هاتفك وكلمة المرور.";
-  $("nameField").hidden = !signup;
-  $("guardianField").hidden = !signup;
-  $("codeField").hidden = !signup;
-  $("fullName").required = signup;
-  $("guardianPhone").required = signup;
-  $("subscriptionCode").required = signup;
-  $("password").autocomplete = signup ? "new-password" : "current-password";
-  $("submitBtn").textContent = signup ? "إنشاء الحساب" : "تسجيل الدخول";
-  $("switchBtn").textContent = signup
-    ? "لديك حساب بالفعل؟ سجّل الدخول"
-    : "ليس لديك حساب؟ أنشئ حسابًا جديدًا";
-  $("formMessage").textContent = "";
-}
-function selectGrade(grade) {
-  selectedGrade = grade;
-  openAuth("signup");
-  $("formSubtitle").textContent =
-    "الصف المختار: " + grade + ". أنشئ حسابك للمتابعة.";
-}
-function toggleTheme() {
-  const light = document.body.classList.toggle("light");
-  $("themeBtn").textContent = light ? "☾" : "☀";
-  try {
-    localStorage.setItem("2mj-theme", light ? "light" : "dark");
-  } catch (_) {}
-}
-try {
-  if (localStorage.getItem("2mj-theme") === "light") {
-    document.body.classList.add("light");
-    $("themeBtn").textContent = "☾";
-  }
-} catch (_) {}
-$("authForm").addEventListener("submit", function(e) {
-  e.preventDefault();
-  $("formMessage").textContent = "";
-
-  if (authMode === "signup") {
-    $("formMessage").textContent =
-      "واجهة التسجيل جاهزة،بس إنشاء الحساب وإرسال رمز واتساب " +
-      "لسه ماضفناهمش. هنربطهم بسيرفر كويس قبل ماناخد بيانات الطلاب.";
-    return;
-  }
-
-  $("formMessage").textContent =
-    "تسجيل الدخول الحقيقي لسه ما اتربطش. لن ولم يتم إرسال بياناتك أو حفظها.";
-});
-
-function verifyNotice() {
-  $("verifyMessage").textContent =
-    "التحقق غير مفعّل بعد؛ لم يُرسل رمز حقيقي. " +
-    "سنضيف التحقق من السيرفر بعد إعداد خدمة واتساب.";
-}
-</script>
-<style>
 /* 2MJ Periodic Globe */
 #mj-globe-section {
   --mj-bg: #0b1224;
@@ -827,39 +467,341 @@ function verifyNotice() {
 @media (prefers-reduced-motion: reduce) {
   #mj-globe-section .mj-globe { animation-duration: 120s; }
 }
+
+@media(max-width:800px) {
+  header { height: auto; padding: 13px 4%; flex-wrap: wrap; }
+  .brand h2 { font-size: 15px; }
+  .header-actions { gap: 5px; }
+  .btn { padding: 10px; font-size: 12px; }
+  main { padding: 35px 5%; }
+  .hero { grid-template-columns: 1fr; gap: 15px; }
+  .content { text-align: center; }
+  .visual { order: 2; }
+  .description { margin-inline: auto; }
+  h1 { font-size: 48px; }
+  .subtitle { font-size: 17px; }
+  .grade-list { gap: 6px; }
+  .grade { font-size: 12px; }
+  .community { justify-content: center; }
+  .features { gap: 7px; margin-top: 25px; }
+  .feature { padding: 16px 5px; }
+  .feature p { font-size: 11px; }
+}
+@media(max-width:390px) {
+  .logo { width: 43px; height: 43px; }
+  .brand h2 { font-size: 13px; }
+  .brand small { font-size: 10px; }
+  .header-actions .btn { padding: 9px 7px; }
+}
+
+/* الكورة داخل الصفحة الرئيسية (لازم تفضل آخر CSS) */
+.visual { display: block; min-height: 0; }
+.visual #mj-globe-section {
+  width: 100%;
+  margin: 0;
+  padding: 10px 0;
+  background: transparent;
+  --mj-text: var(--text);
+  --mj-muted: var(--muted);
+}
 </style>
-
-<section id="mj-globe-section" dir="rtl">
-  <h2 class="mj-heading">استكشف <span>الجدول الدوري</span></h2>
-  <p class="mj-subtitle">
-    118 عنصرًا كيميائيًا في عالم ثلاثي الأبعاد.<br>
-    اختار أي عنصر واكتشف أسراره.
-  </p>
-
-  <input id="mj-search" class="mj-search" type="search"
-    placeholder="ابحث عن عنصر: حديد، Fe، أو 26..."
-    aria-label="ابحث عن عنصر كيميائي">
-
-  <div class="mj-count" id="mj-count">118 عنصرًا</div>
-
-  <div class="mj-stage" id="mj-stage" aria-label="الكرة التفاعلية للجدول الدوري">
-    <div class="mj-globe" id="mj-globe"></div>
-  </div>
-
-  <p class="mj-hint">اضغط على أي عنصر لعرض معلوماته</p>
-  <div class="mj-legend" id="mj-legend"></div>
-
-  <div class="mj-modal" id="mj-modal" role="dialog"
-    aria-modal="true" aria-label="معلومات العنصر">
-    <div class="mj-dialog">
-      <div class="mj-close-row">
-        <span class="mj-tag">موسوعة 2MJ الكيميائية</span>
-        <button class="mj-close" id="mj-close" aria-label="إغلاق">×</button>
-      </div>
-      <div id="mj-details"></div>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <div class="logo">2MJ</div>
+    <div>
+      <h2>2MJ لشرح العلوم</h2>
+      <small>العلم يبدأ بسؤال</small>
     </div>
   </div>
-</section>
+  <div class="header-actions">
+    <button class="btn btn-primary" onclick="openAuth('signup')">
+      + حساب جديد
+    </button>
+    <button class="btn" onclick="openAuth('login')">
+      تسجيل الدخول
+    </button>
+    <button class="theme" id="themeBtn" onclick="toggleTheme()"
+      aria-label="تغيير المظهر">☀</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="visual">
+
+      <!-- الكورة مكان الـ 6 عناصر -->
+      <section id="mj-globe-section" dir="rtl">
+        <h2 class="mj-heading">استكشف <span>الجدول الدوري</span></h2>
+        <p class="mj-subtitle">
+          118 عنصرًا كيميائيًا في عالم ثلاثي الأبعاد.<br>
+          اختار أي عنصر واكتشف أسراره.
+        </p>
+
+        <input id="mj-search" class="mj-search" type="search"
+          placeholder="ابحث عن عنصر: حديد، Fe، أو 26..."
+          aria-label="ابحث عن عنصر كيميائي">
+
+        <div class="mj-count" id="mj-count">118 عنصرًا</div>
+
+        <div class="mj-stage" id="mj-stage" aria-label="الكرة التفاعلية للجدول الدوري">
+          <div class="mj-globe" id="mj-globe"></div>
+        </div>
+
+        <p class="mj-hint">اضغط على أي عنصر لعرض معلوماته</p>
+        <div class="mj-legend" id="mj-legend"></div>
+
+        <div class="mj-modal" id="mj-modal" role="dialog"
+          aria-modal="true" aria-label="معلومات العنصر">
+          <div class="mj-dialog">
+            <div class="mj-close-row">
+              <span class="mj-tag">موسوعة 2MJ الكيميائية</span>
+              <button class="mj-close" id="mj-close" aria-label="إغلاق">×</button>
+            </div>
+            <div id="mj-details"></div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <div class="content">
+      <div class="tag">2MJ · SCIENCE ACADEMY</div>
+      <h1>2MJ لشرح <span>العلوم</span></h1>
+      <p class="subtitle">مش مجرد حفظ قوانين... افهم العلم صح.</p>
+      <p class="description">
+        رحلة تعليمية تساعدك تفهم الأفكار العلمية،
+        وتربط المعلومات ببعضها، وتتعلم خطوة بخطوة.
+      </p>
+
+      <div class="grade-list">
+        <button class="grade red-grade" onclick="selectGrade('الأول الثانوي')">
+          الأول الثانوي<small>01 · المرحلة الدراسية</small>
+        </button>
+        <button class="grade blue-grade" onclick="selectGrade('الثاني الثانوي')">
+          الثاني الثانوي<small>02 · المرحلة الدراسية</small>
+        </button>
+        <button class="grade green-grade" onclick="selectGrade('الثالث الثانوي')">
+          الثالث الثانوي<small>03 · المرحلة الدراسية</small>
+        </button>
+      </div>
+
+      <div class="community">
+        <!-- استبدل الرابط برابط جروب الأكاديمية الحقيقي -->
+        <a class="whatsapp" href="https://www.whatsapp.com/"
+           target="_blank" rel="noopener">◉ جروب واتساب</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="feature">
+      <strong>⚗ شرح مبسط</strong>
+      <p>افهم الفكرة قبل حفظها</p>
+    </div>
+    <div class="feature">
+      <strong>✦ فهم الأفكار</strong>
+      <p>اربط المعلومات ببعضها</p>
+    </div>
+    <div class="feature">
+      <strong>▤ محتوى منظم</strong>
+      <p>رحلتك العلمية في مكان واحد</p>
+    </div>
+  </section>
+</main>
+
+<footer>2MJ لشرح العلوم · جميع الحقوق محفوظة © 2026</footer>
+
+<div class="modal" id="authModal"
+  onclick="if(event.target===this)closeAuth()">
+  <section class="dialog">
+    <button class="close" onclick="closeAuth()" aria-label="إغلاق">×</button>
+    <div class="dialog-head">
+      <div class="tag">2MJ · حساب الطالب</div>
+      <h2 id="formTitle">إنشاء حساب جديد</h2>
+      <p class="muted" id="formSubtitle">
+        أنشئ حسابك للانضمام إلى الأكاديمية.
+      </p>
+    </div>
+    <form id="authForm">
+      <div class="field" id="nameField">
+        <label for="fullName">اسم الطالب بالكامل</label>
+        <input id="fullName" autocomplete="name"
+          placeholder="اسم الطالب" required>
+      </div>
+
+      <div class="field">
+        <label for="studentPhone">رقم هاتف الطالب</label>
+        <input id="studentPhone" type="tel"
+          inputmode="tel" autocomplete="tel"
+          placeholder="+20 1XXXXXXXXX" required>
+      </div>
+
+      <div class="field" id="guardianField">
+        <label for="guardianPhone">رقم هاتف ولي الأمر</label>
+        <input id="guardianPhone" type="tel"
+          inputmode="tel" placeholder="+20 1XXXXXXXXX">
+      </div>
+
+      <div class="field" id="yearField">
+        <label for="gradeYear">سنة كام؟</label>
+        <select id="gradeYear" required>
+          <option value="" disabled selected>اختار صفك الدراسي</option>
+          <option>الصف الأول الإعدادي</option>
+          <option>الصف الثاني الإعدادي</option>
+          <option>الصف الثالث الإعدادي</option>
+          <option>الصف الأول الثانوي</option>
+          <option>الصف الثاني الثانوي</option>
+          <option>الصف الثالث الثانوي</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="password">كلمة المرور</label>
+        <input id="password" type="password"
+          minlength="8" autocomplete="new-password"
+          placeholder="8 أحرف على الأقل" required>
+      </div>
+
+      <div class="field" id="codeField">
+        <label for="subscriptionCode">كود الاشتراك</label>
+        <input id="subscriptionCode"
+          placeholder="الكود الذي أعطاه لك المدرس">
+      </div>
+
+      <button class="btn btn-primary full" id="submitBtn" type="submit">
+        إنشاء الحساب
+      </button>
+    </form>
+
+    <p class="message" id="formMessage" aria-live="polite"></p>
+
+    <button class="switch" id="switchBtn" onclick="switchAuth()">
+      لديك حساب بالفعل؟ سجّل الدخول
+    </button>
+  </section>
+</div>
+
+<div class="modal" id="verifyModal"
+  onclick="if(event.target===this)closeVerify()">
+  <section class="dialog">
+    <button class="close" onclick="closeVerify()" aria-label="إغلاق">×</button>
+    <div class="tag">التحقق من رقم الهاتف</div>
+    <h2>تأكيد رقم واتساب</h2>
+    <p class="muted">
+      في النسخة النهائية سنرسل رمز تحقق إلى رقم الطالب
+      عبر خدمة واتساب موثقة.
+    </p>
+    <div class="field">
+      <label for="otp">رمز التحقق</label>
+      <input id="otp" inputmode="numeric" autocomplete="one-time-code"
+        placeholder="أدخل الرمز المرسل">
+    </div>
+    <button class="btn btn-primary full" onclick="verifyNotice()">
+      تأكيد الرقم
+    </button>
+    <p class="message" id="verifyMessage" aria-live="polite"></p>
+  </section>
+</div>
+
+<script>
+let authMode = "signup";
+let selectedGrade = "";
+const $ = id => document.getElementById(id);
+
+function openAuth(mode) {
+  authMode = mode;
+  updateAuth();
+  $("authModal").classList.add("open");
+}
+function closeAuth() {
+  $("authModal").classList.remove("open");
+}
+function closeVerify() {
+  $("verifyModal").classList.remove("open");
+}
+function switchAuth() {
+  authMode = authMode === "signup" ? "login" : "signup";
+  updateAuth();
+}
+function updateAuth() {
+  const signup = authMode === "signup";
+  $("formTitle").textContent =
+    signup ? "إنشاء حساب جديد" : "تسجيل الدخول";
+  $("formSubtitle").textContent = signup
+    ? "أدخل بياناتك لإنشاء حساب في 2MJ."
+    : "سجّل الدخول باستخدام رقم هاتفك وكلمة المرور.";
+  $("nameField").hidden = !signup;
+  $("guardianField").hidden = !signup;
+  $("yearField").hidden = !signup;
+  $("codeField").hidden = !signup;
+  $("fullName").required = signup;
+  $("guardianPhone").required = signup;
+  $("gradeYear").required = signup;
+  $("subscriptionCode").required = signup;
+  $("password").autocomplete = signup ? "new-password" : "current-password";
+  $("submitBtn").textContent = signup ? "إنشاء الحساب" : "تسجيل الدخول";
+  $("switchBtn").textContent = signup
+    ? "لديك حساب بالفعل؟ سجّل الدخول"
+    : "ليس لديك حساب؟ أنشئ حسابًا جديدًا";
+  $("formMessage").textContent = "";
+  $("formMessage").className = "message";
+}
+function selectGrade(grade) {
+  selectedGrade = grade;
+  openAuth("signup");
+  $("gradeYear").value = "الصف " + grade;
+  $("formSubtitle").textContent =
+    "الصف المختار: " + grade + ". أنشئ حسابك للمتابعة.";
+}
+function toggleTheme() {
+  const light = document.body.classList.toggle("light");
+  $("themeBtn").textContent = light ? "☾" : "☀";
+  try {
+    localStorage.setItem("2mj-theme", light ? "light" : "dark");
+  } catch (_) {}
+}
+try {
+  if (localStorage.getItem("2mj-theme") === "light") {
+    document.body.classList.add("light");
+    $("themeBtn").textContent = "☾";
+  }
+} catch (_) {}
+
+// توحيد شكل رقم الهاتف للمقارنة (+20 / 0020 / 0)
+const normPhone = p => p.replace(/\D/g, "")
+  .replace(/^0020/, "").replace(/^20/, "").replace(/^0/, "");
+
+$("authForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const msg = $("formMessage");
+  msg.className = "message";
+  msg.textContent = "";
+
+  if (authMode === "signup") {
+    if (normPhone($("studentPhone").value) ===
+        normPhone($("guardianPhone").value)) {
+      msg.className = "message error";
+      msg.textContent = "رقم وليّ الأمر مش رقمك يا ناصح";
+      $("guardianPhone").focus();
+      return;
+    }
+    msg.textContent =
+      "واجهة التسجيل جاهزة، بس إنشاء الحساب وإرسال رمز واتساب لسه ماضفناهمش.";
+    return;
+  }
+
+  msg.textContent =
+    "تسجيل الدخول الحقيقي لسه ما اتربطش. لن يتم إرسال بياناتك أو حفظها.";
+});
+
+function verifyNotice() {
+  $("verifyMessage").textContent =
+    "التحقق غير مفعّل بعد؛ لم يُرسل رمز حقيقي. " +
+    "سنضيف التحقق من السيرفر بعد إعداد خدمة واتساب.";
+}
+</script>
 
 <script>
 (() => {
